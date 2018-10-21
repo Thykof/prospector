@@ -28,6 +28,7 @@ _INSTALL_REQUIRES = [
     'pycodestyle<2.4.0,>=2.0.0',
     'pep8-naming>=0.3.3',
     'pydocstyle>=2.0.0',
+    'jinja2',
 ]
 
 if sys.version_info < (3, 0):

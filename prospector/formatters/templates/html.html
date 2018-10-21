@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prospector report</title>
+<style>
+h1 {
+    margin-left: 40px;
+    font-size: 3em;
+    font-weight: bold;
+}
+h2 {
+  font-size: 2em;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<h1>Prospector report</h1>
+
+<h2>Summary</h2>
+<p>Strictness: {{output['summary']['strictness']}}</p>
+
+<p>Started at {{output['summary']['started']}}</p>
+<p>Completed at {{output['summary']['completed']}}</p>
+<p>Time taken: {{output['summary']['time_taken']}}</p>
+
+<p>Profiles: {{output['summary']['profiles']}}</p>
+
+<p>Libraries :
+<ul>
+{% for lib in output['summary']['libraries'] %}
+  <li>{{ libb }}</li>
+{% endfor %}
+</ul>
+
+<p>Tools:
+<ul>
+{% for tool in output['summary']['tools'] %}
+  <li>{{ tool }}</li>
+{% endfor %}
+</ul>
+
+<p>Formatter: {{output['summary']['formatter']}}</p>
+
+<p>Message count: {{output['summary']['message_count']}}</p>
+
+
+<h2>Messages</h2>
+
+<ul>
+{% for m in output['messages'] %}
+  <li>
+  <p>{{ m['message'] }}</p>
+  <p>File: {{ m['location']['path'] }}</p>
+  <p>Location: line: {{ m['location']['line'] }}, character:{{ m['location']['character'] }}</p>
+  {% if m['location']['module'] %}
+  <p>Module: {{ m['location']['module'] }}</p>
+  {% endif %}
+  {% if m['location']['function'] %}
+  <p>Function: {{ m['location']['function'] }}</p>
+  {% endif %}
+  <p>Source: {{ m['source'] }}, code: {{ m['code'] }} </p>
+  </li>
+  <br>
+{% endfor %}
+</ul>
+
+
+<h2>Profile</h2>
+<p>{{ output['profile'] }}
+
+</body>
+</html>
